@@ -5,6 +5,7 @@ class Loop{
 		this.camera = camera;
 		this.scene = scene;
 		this.renderer = renderer;
+		this.updatables = []
 	}
 	start(){
 		this.renderer.setAnimationLoop(()=>{
@@ -14,6 +15,9 @@ class Loop{
     animate(){
         // handle render frame
         this.renderer.render(this.scene, this.camera);
+		this.updatables.forEach((object)=>{
+			object.update();
+		})
     }
 	stop(){
 		this.renderer.setAnimationLoop(null);
